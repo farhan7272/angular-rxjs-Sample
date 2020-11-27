@@ -26,12 +26,18 @@ export class AppComponent  {
 
     of(5,6,7)
     .pipe(
-      map(item => item * 2),
-      map(item => item - 10),
       tap(item => console.log(`checking ${item}`)),
+      map(item => item * 2),
+      tap(item => console.log(`after multiply by 2 :${item}`)),
+      map(item => item - 10),
+      tap(item => console.log(`after minus 10 :${item}`)),
       take(2)
       )
-    .subscribe(console.log);
+    .subscribe(
+      item => console.log(`Resulting Item ${item}`),
+      error => console.log(`Error : ${error}`),
+      () => console.log('completed the number')
+    );
   
   }
 
